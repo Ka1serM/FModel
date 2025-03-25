@@ -195,9 +195,9 @@ public class Options
 
         SKBitmap bitmap = o switch
         {
-            UTexture2D texture2D => texture2D.Decode(UserSettings.Default.PreviewMaxTextureSize, UserSettings.Default.CurrentDir.TexturePlatform),
-            UTexture2DArray texture2DArray => texture2DArray.DecodeTextureArray(UserSettings.Default.CurrentDir.TexturePlatform)?.FirstOrDefault(),
-            _ => o.Decode(UserSettings.Default.CurrentDir.TexturePlatform)
+            UTexture2D texture2D => texture2D.Decode(UserSettings.Default.PreviewMaxTextureSize, UserSettings.Default.CurrentDir.TexturePlatform).ToSkBitmap(),
+            UTexture2DArray texture2DArray => texture2DArray.DecodeTextureArray(UserSettings.Default.CurrentDir.TexturePlatform)?.FirstOrDefault().ToSkBitmap(),
+            _ => o.Decode(UserSettings.Default.CurrentDir.TexturePlatform).ToSkBitmap()
         };
 
         if (bitmap is not null)
